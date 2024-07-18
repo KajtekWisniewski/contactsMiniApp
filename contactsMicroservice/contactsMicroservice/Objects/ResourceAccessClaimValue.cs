@@ -1,7 +1,7 @@
 ﻿using System.Security.Principal;
 using System.Text.Json.Serialization;
 
-namespace AuthService.Objects
+namespace ContactsMicroservice.Objects
 {
     public class ResourceAccessClaimValue
     {

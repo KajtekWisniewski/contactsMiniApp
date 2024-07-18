@@ -1,4 +1,4 @@
-﻿namespace AuthService.DTOs
+﻿namespace ContactsMicroservice.DTOs
 {
     public class UpsertContactDto
     {

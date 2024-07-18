@@ -1,16 +1,16 @@
 
 using Microsoft.EntityFrameworkCore;
-using AuthService.Configuration;
-using AuthService.Data;
-using AuthService.DTOs;
-using AuthService.Repository;
-using AuthService.Repository.Contracts;
+using ContactsMicroservice.Configuration;
+using ContactsMicroservice.Data;
+using ContactsMicroservice.DTOs;
+using ContactsMicroservice.Repository;
+using ContactsMicroservice.Repository.Contracts;
 using Keycloak.AuthServices.Authentication;
 using Keycloak.AuthServices.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 
-namespace AuthService
+namespace ContactsMicroservice
 {
     public class Program
     {
@@ -22,7 +22,7 @@ namespace AuthService
 
             builder.Services.AddControllers();
 
-            builder.Services.AddScoped<IStockRepository, StockRepository>();
+            builder.Services.AddScoped<IContactRepository, ContactRepository>();
 
             builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 

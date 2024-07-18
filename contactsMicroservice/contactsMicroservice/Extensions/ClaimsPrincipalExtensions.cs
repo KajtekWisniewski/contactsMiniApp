@@ -1,10 +1,10 @@
-﻿using AuthService.Objects;
+﻿using ContactsMicroservice.Objects;
 using System.Net.NetworkInformation;
 using System.Runtime.CompilerServices;
 using System.Security.Claims;
 using System.Text.Json;
 
-namespace AuthService.Extensions
+namespace ContactsMicroservice.Extensions
 {
     public static class ClaimsPrincipalExtensions
     {

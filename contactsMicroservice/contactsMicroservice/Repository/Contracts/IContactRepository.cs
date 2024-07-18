@@ -1,6 +1,6 @@
-﻿using AuthService.Entities;
+﻿using ContactsMicroservice.Entities;
 
-namespace AuthService.Repository.Contracts
+namespace ContactsMicroservice.Repository.Contracts
 {
     public interface IContactRepository
     {

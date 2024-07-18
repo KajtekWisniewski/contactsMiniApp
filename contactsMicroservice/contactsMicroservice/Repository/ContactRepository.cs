@@ -2,12 +2,12 @@
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
-using AuthService.Data;
-using AuthService.DTOs;
-using AuthService.Entities;
-using AuthService.Repository.Contracts;
+using ContactsMicroservice.Data;
+using ContactsMicroservice.DTOs;
+using ContactsMicroservice.Entities;
+using ContactsMicroservice.Repository.Contracts;
 
-namespace AuthService.Repository
+namespace ContactsMicroservice.Repository
 {
     public class ContactRepository(ApplicationDbContext context, IMapper mapper) : IContactRepository
     {

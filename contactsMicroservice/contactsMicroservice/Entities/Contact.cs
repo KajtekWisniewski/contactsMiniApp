@@ -1,4 +1,4 @@
-﻿namespace AuthService.Entities
+﻿namespace ContactsMicroservice.Entities
 {
     public class Contact
         {

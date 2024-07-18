@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using AuthService.Entities;
+using ContactsMicroservice.Entities;
 
-namespace AuthService.Data
+namespace ContactsMicroservice.Data
 {
     public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
     {

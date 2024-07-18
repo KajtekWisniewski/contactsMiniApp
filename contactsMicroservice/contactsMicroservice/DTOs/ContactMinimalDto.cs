@@ -1,6 +1,6 @@
-namespace AuthService.DTOs
+namespace ContactsMicroservice.DTOs
 {
-    public class ContactDto
+    public class ContactMinimalDto
     {
 
             public int Id { get; init; }

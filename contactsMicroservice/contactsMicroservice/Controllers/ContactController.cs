@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using AuthService.DTOs;
-using AuthService.Entities;
-using AuthService.Extensions;
-using AuthService.Repository.Contracts;
+using ContactsMicroservice.DTOs;
+using ContactsMicroservice.Entities;
+using ContactsMicroservice.Extensions;
+using ContactsMicroservice.Repository.Contracts;
 
-namespace AuthService.Controllers
+namespace ContactsMicroservice.Controllers
 {
     [ApiController]
     [Route("contacts")]
@@ -100,7 +100,7 @@ namespace AuthService.Controllers
                 mapper.Map(body, contact);
                 _repository.Edit(contact);
 
-                if (!await _repository.SaveChangesAsync())
+                if (!await _repository.SafeChangesAsync())
                     return BadRequest("Something went wrong while updating the contact");
 
                 var contactDto = mapper.Map<ContactDto>(contact);

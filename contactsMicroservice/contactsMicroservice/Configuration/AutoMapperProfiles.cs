@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using AuthService.DTOs;
-using AuthService.Entities;
+using ContactsMicroservice.DTOs;
+using ContactsMicroservice.Entities;
 
-namespace AuthService.Configuration
+namespace ContactsMicroservice.Configuration
 {
     public class AutoMapperProfiles : Profile {
         public AutoMapperProfiles()
