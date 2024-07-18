@@ -19,20 +19,16 @@ namespace ContactsMicroservice.Data
                 .Property(c => c.Password)
                 .IsRequired();
 
-            modelBuilder.Entity<Category>()
-                .HasMany(c => c.Subcategories)
-                .WithOne(s => s.Category)
-                .HasForeignKey(s => s.CategoryId);
-
             modelBuilder.Entity<Contact>()
-                .HasOne(c => c.Category)
-                .WithMany()
-                .HasForeignKey(c => c.CategoryId);
+               .HasOne(c => c.Category)
+               .WithMany(c => c.Contacts)
+               .HasForeignKey(c => c.CategoryId);
 
             modelBuilder.Entity<Contact>()
                 .HasOne(c => c.Subcategory)
-                .WithMany()
-                .HasForeignKey(c => c.SubcategoryId);
+                .WithMany(s => s.Contacts)
+                .HasForeignKey(c => c.SubcategoryId)
+                .OnDelete(DeleteBehavior.SetNull);
 
             modelBuilder.Entity<Category>().HasData(new List<Category>
                 {
@@ -61,7 +57,7 @@ namespace ContactsMicroservice.Data
                         CategoryId = 1, 
                         SubcategoryId = 1, 
                         Phone = "1234567890", 
-                        DateOfBirth = new DateTime(1985, 1, 15) 
+                        DateOfBirth = "2000-17-06"
                     },
                     new Contact 
                     { 
@@ -73,7 +69,7 @@ namespace ContactsMicroservice.Data
                         CategoryId = 1, 
                         SubcategoryId = 2, 
                         Phone = "0987654321", 
-                        DateOfBirth = new DateTime(1990, 2, 20) 
+                        DateOfBirth = "1998-13-02"
                     },
                     new Contact 
                     { 
@@ -85,7 +81,7 @@ namespace ContactsMicroservice.Data
                         CategoryId = 2, 
                         SubcategoryId = 3, 
                         Phone = "1122334455", 
-                        DateOfBirth = new DateTime(1988, 3, 25) 
+                        DateOfBirth = "1967-24-01"
                     },
                     new Contact 
                     { 
@@ -97,7 +93,7 @@ namespace ContactsMicroservice.Data
                         CategoryId = 2, 
                         SubcategoryId = 4, 
                         Phone = "5566778899", 
-                        DateOfBirth = new DateTime(1975, 4, 30) 
+                        DateOfBirth = "2001-05-07"
                     }
                 });
 

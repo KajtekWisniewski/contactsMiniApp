@@ -9,6 +9,6 @@
         public int CategoryId { get; init; }
         public int? SubcategoryId { get; init; }
         public string Phone { get; init; } ="";
-        public DateTime DateOfBirth { get; init; }
+        public string DateOfBirth { get; init; }
     }
 }

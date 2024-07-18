@@ -12,14 +12,14 @@
             public int? SubcategoryId { get; set; }
             public Subcategory Subcategory { get; set; }
             public string Phone { get; set; }
-            public DateTime DateOfBirth { get; set; }
+            public string DateOfBirth { get; set; }
         }
 
         public class Category
         {
             public int Id { get; set; }
             public string Name { get; set; }
-            public ICollection<Subcategory> Subcategories { get; set; }
+            public ICollection<Contact> Contacts { get; set; }
         }
 
         public class Subcategory
@@ -28,6 +28,7 @@
             public string Name { get; set; }
             public int CategoryId { get; set; }
             public Category Category { get; set; }
+            public ICollection<Contact> Contacts { get; set; }
         }
 
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
@@ -60,7 +59,7 @@ namespace contactsMicroservice.Migrations
                     CategoryId = table.Column<int>(type: "integer", nullable: false),
                     SubcategoryId = table.Column<int>(type: "integer", nullable: true),
                     Phone = table.Column<string>(type: "text", nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    DateOfBirth = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -104,10 +103,10 @@ namespace contactsMicroservice.Migrations
                 columns: new[] { "Id", "CategoryId", "DateOfBirth", "Email", "FirstName", "LastName", "Password", "Phone", "SubcategoryId" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(1985, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "john.doe@example.com", "John", "Doe", "Password1@123", "1234567890", 1 },
-                    { 2, 1, new DateTime(1990, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "jane.smith@example.com", "Jane", "Smith", "Password2@#!", "0987654321", 2 },
-                    { 3, 2, new DateTime(1988, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "alice.johnson@example.com", "Alice", "Johnson", "asFDma@4jac2@pl", "1122334455", 3 },
-                    { 4, 2, new DateTime(1975, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "bob.brown@example.com", "Bob", "Brown", "verystr0ngP455", "5566778899", 4 }
+                    { 1, 1, "2000-17-06", "john.doe@example.com", "John", "Doe", "Password1@123", "1234567890", 1 },
+                    { 2, 1, "1998-13-02", "jane.smith@example.com", "Jane", "Smith", "Password2@#!", "0987654321", 2 },
+                    { 3, 2, "1967-24-01", "alice.johnson@example.com", "Alice", "Johnson", "asFDma@4jac2@pl", "1122334455", 3 },
+                    { 4, 2, "2001-05-07", "bob.brown@example.com", "Bob", "Brown", "verystr0ngP455", "5566778899", 4 }
                 });
 
             migrationBuilder.CreateIndex(

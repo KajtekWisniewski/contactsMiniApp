@@ -38,12 +38,34 @@ namespace ContactsMicroservice.Repository
         }
         public async Task<T?> GetById<T>(int id)
         {
-            return await context
-                .Contacts
-                .Where(p => p.Id == id)
-                .ProjectTo<T>(mapper.ConfigurationProvider)
-                .SingleOrDefaultAsync();
+           return await context
+               .Contacts
+               .Where(p => p.Id == id)
+               .ProjectTo<T>(mapper.ConfigurationProvider)
+               .SingleOrDefaultAsync();
         }
+
+        // public async Task<ContactDto> GetById<ContactDto>(int id)
+        // {
+        //     return await context.Contacts
+        //         .Include(c => c.Category)
+        //         .Include(c => c.Subcategory)
+        //         .Where(c => c.Id == id)
+        //         .Select(c => new ContactDto
+        //         {
+        //             Id = c.Id,
+        //             FirstName = c.FirstName,
+        //             LastName = c.LastName,
+        //             Email = c.Email,
+        //             Phone = c.Phone,
+        //             DateOfBirth = c.DateOfBirth,
+        //             Category = c.Category.Name,
+        //             Subcategory = c.Subcategory != null ? c.Subcategory.Name : string.Empty
+        //         })
+        //         .ProjectTo<T>(mapper.ConfigurationProvider)
+        //         .FirstOrDefaultAsync();
+        // }
+
 
         public async Task<bool> SafeChangesAsync()
         {

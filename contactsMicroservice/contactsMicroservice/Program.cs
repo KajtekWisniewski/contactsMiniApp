@@ -45,7 +45,8 @@ namespace ContactsMicroservice
             {
                 options.UseNpgsql(builder.Configuration.GetConnectionString("Postgres"));
             });
-
+            
+            Console.WriteLine(builder.Configuration.GetConnectionString("Postgres"));
 
             var app = builder.Build();
 

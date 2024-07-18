@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace contactsMicroservice.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240718092832_InitialCreate")]
+    [Migration("20240718104030_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -70,8 +70,9 @@ namespace contactsMicroservice.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<string>("DateOfBirth")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -112,7 +113,7 @@ namespace contactsMicroservice.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            DateOfBirth = new DateTime(1985, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = "2000-17-06",
                             Email = "john.doe@example.com",
                             FirstName = "John",
                             LastName = "Doe",
@@ -124,7 +125,7 @@ namespace contactsMicroservice.Migrations
                         {
                             Id = 2,
                             CategoryId = 1,
-                            DateOfBirth = new DateTime(1990, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = "1998-13-02",
                             Email = "jane.smith@example.com",
                             FirstName = "Jane",
                             LastName = "Smith",
@@ -136,7 +137,7 @@ namespace contactsMicroservice.Migrations
                         {
                             Id = 3,
                             CategoryId = 2,
-                            DateOfBirth = new DateTime(1988, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = "1967-24-01",
                             Email = "alice.johnson@example.com",
                             FirstName = "Alice",
                             LastName = "Johnson",
@@ -148,7 +149,7 @@ namespace contactsMicroservice.Migrations
                         {
                             Id = 4,
                             CategoryId = 2,
-                            DateOfBirth = new DateTime(1975, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = "2001-05-07",
                             Email = "bob.brown@example.com",
                             FirstName = "Bob",
                             LastName = "Brown",

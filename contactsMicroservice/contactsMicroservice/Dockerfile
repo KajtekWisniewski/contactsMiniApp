@@ -8,17 +8,17 @@ EXPOSE 8080
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Development
 WORKDIR /src
-COPY ["AuthService.csproj", "."]
-RUN dotnet restore "./AuthService.csproj"
+COPY ["contactsMicroservice.csproj", "."]
+RUN dotnet restore "./contactsMicroservice.csproj"
 COPY . .
-RUN dotnet build "./AuthService.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "./contactsMicroservice.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Development
-RUN dotnet publish "./AuthService.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./contactsMicroservice.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENV ASPNETCORE_ENVIRONMENT=Development
-ENTRYPOINT ["dotnet", "AuthService.dll"]
+ENTRYPOINT ["dotnet", "contactsMicroservice.dll"]

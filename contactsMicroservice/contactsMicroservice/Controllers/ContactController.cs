@@ -20,7 +20,6 @@ namespace ContactsMicroservice.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public async Task<IActionResult> GetAll()
         {   
             var result = await _repository.GetAll<ContactMinimalDto>();
@@ -28,7 +27,6 @@ namespace ContactsMicroservice.Controllers
         }
 
         [HttpGet("{id:int}")]
-        [Authorize]
         public async Task<IActionResult> GetOne(int id)
         {
             var result = await _repository.GetById<ContactDto>(id);

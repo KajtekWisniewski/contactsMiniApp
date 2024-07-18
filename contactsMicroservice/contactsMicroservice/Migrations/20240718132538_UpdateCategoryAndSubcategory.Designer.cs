@@ -3,6 +3,7 @@ using System;
 using ContactsMicroservice.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace contactsMicroservice.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240718132538_UpdateCategoryAndSubcategory")]
+    partial class UpdateCategoryAndSubcategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,6 +97,9 @@ namespace contactsMicroservice.Migrations
                     b.Property<int?>("SubcategoryId")
                         .HasColumnType("integer");
 
+                    b.Property<int?>("SubcategoryId1")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
@@ -102,6 +108,8 @@ namespace contactsMicroservice.Migrations
                         .IsUnique();
 
                     b.HasIndex("SubcategoryId");
+
+                    b.HasIndex("SubcategoryId1");
 
                     b.ToTable("Contacts");
 
@@ -207,15 +215,19 @@ namespace contactsMicroservice.Migrations
             modelBuilder.Entity("ContactsMicroservice.Entities.Contact", b =>
                 {
                     b.HasOne("ContactsMicroservice.Entities.Category", "Category")
-                        .WithMany("Contacts")
+                        .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ContactsMicroservice.Entities.Subcategory", "Subcategory")
-                        .WithMany("Contacts")
+                        .WithMany()
                         .HasForeignKey("SubcategoryId")
                         .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("ContactsMicroservice.Entities.Subcategory", null)
+                        .WithMany("Contacts")
+                        .HasForeignKey("SubcategoryId1");
 
                     b.Navigation("Category");
 
@@ -225,7 +237,7 @@ namespace contactsMicroservice.Migrations
             modelBuilder.Entity("ContactsMicroservice.Entities.Subcategory", b =>
                 {
                     b.HasOne("ContactsMicroservice.Entities.Category", "Category")
-                        .WithMany()
+                        .WithMany("Subcategories")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -235,7 +247,7 @@ namespace contactsMicroservice.Migrations
 
             modelBuilder.Entity("ContactsMicroservice.Entities.Category", b =>
                 {
-                    b.Navigation("Contacts");
+                    b.Navigation("Subcategories");
                 });
 
             modelBuilder.Entity("ContactsMicroservice.Entities.Subcategory", b =>
