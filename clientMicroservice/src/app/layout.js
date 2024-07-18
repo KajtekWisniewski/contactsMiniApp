@@ -5,8 +5,8 @@ const inter = Inter({ subsets: ['latin'] });
 import SessionProviderWrapper from '@/components/keycloak/SessionProviderWrapper';
 
 export const metadata = {
-  title: 'Stock Predictor',
-  description: 'stock returns prediction based on LSTM models for each stock'
+  title: 'Contacts Mini App',
+  description: 'Mini App for managing contacts list'
 };
 
 export default function RootLayout({ children }) {

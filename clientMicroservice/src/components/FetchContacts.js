@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ClipLoader } from 'react-spinners';
+import Link from 'next/link';
+import styles from '@/app/stockStyles.module.scss';
 
 const FetchContacts = () => {
   const [contacts, setContacts] = useState([]);
@@ -34,6 +36,7 @@ const FetchContacts = () => {
         );
 
         setContacts(response.data); // Adjust based on your API response structure
+        console.log(response.data);
       } catch (err) {
         setError('Error fetching stocks data');
         console.error(err);
@@ -104,10 +107,12 @@ const FetchContacts = () => {
             <tbody>
               {contacts.map((contact) => (
                 <tr key={contact.id}>
-                  <td>{contact.id}</td>
-                  <td>{contact.FirstName}</td>
-                  <td>{contact.LastName}</td>
-                  <td>{contact.Email}</td>
+                  <Link className={styles.linkStyle} href={`/contacts/${contact.id}`}>
+                    <td>{contact.id}</td>
+                    <td>{contact.firstName}</td>
+                    <td>{contact.lastName}</td>
+                    <td>{contact.email}</td>
+                  </Link>
                   {isUser && <td>
                     <button onClick={() => handleDelete(contact.id)} disabled={loading}>
                       Delete

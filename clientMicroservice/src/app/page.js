@@ -6,10 +6,10 @@ export default function Home() {
   return (
     <div>
       <div className={styles.mainPage}>
-        <h1 className={styles.welcomePage}>Welcome to Stock Predictor</h1>
+        <h1 className={styles.welcomePage}>Contacts Mini App</h1>
         <Image src="/bar_icon.png" width={150} height={150} alt="site logo" />
         <h3 className={styles.welcomePage}>
-          Use LSTM models to predict given stock return
+          this is a demo app for recruitment process
         </h3>
         <PutRequestComponent></PutRequestComponent>
       </div>

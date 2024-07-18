@@ -13,7 +13,7 @@ const PutRequestComponent = () => {
     setError('');
     try {
       const response = await axios.patch(
-        `${process.env.NEXT_PUBLIC_DEMO_BACKEND_URL}/stocks`
+        `${process.env.NEXT_PUBLIC_DEMO_BACKEND_URL}/contacts`
       );
       setResponseMessage(response.data.message); // Adjust based on your API response structure
     } catch (err) {

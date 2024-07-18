@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import styles from '../stockStyles.module.scss';
 import PrivateRoute from '@/components/keycloak/PrivateRoute';
 import FetchContacts from '@/components/FetchContacts';
+import ContactForm from '@/components/CreateContact';
 
 export default function ContactsPage() {
   const { data: session, status } = useSession();
@@ -17,6 +18,9 @@ export default function ContactsPage() {
   return (
     <div className={styles.mainPage}>
       <FetchContacts></FetchContacts>
+      <PrivateRoute>
+        <ContactForm></ContactForm>
+      </PrivateRoute>
     </div>
   );
 }
