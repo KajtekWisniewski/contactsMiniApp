@@ -1,0 +1,34 @@
+.stockWidget {
+  height: 500px;
+  padding: 2em;
+  margin-top: 6em;
+}
+
+.returnWidget {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10em;
+}
+
+.predictionForm {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+.mainPage {
+  margin-top: 12em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcomePage {
+  padding: 1em;
+}
+.linkStyle {
+  padding: 1em;
+  text-decoration: underline;
+}
