@@ -2,7 +2,8 @@
 using System.Text.Json.Serialization;
 
 namespace ContactsMicroservice.Objects
-{
+{   
+    //klasy reprezentujace wartosci potrzebne do komunikacji z IDP
     public class ResourceAccessClaimValue
     {
         [JsonPropertyName("api-client")]

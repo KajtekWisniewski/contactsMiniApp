@@ -1,5 +1,6 @@
 ﻿namespace ContactsMicroservice.DTOs
-{
+{   
+    //Dto uzywane do wysylania danych w pelni
     public class ContactDto
     {
 

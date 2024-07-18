@@ -4,12 +4,14 @@ using ContactsMicroservice.Entities;
 namespace ContactsMicroservice.Data
 {
     public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
-    {
+    {   
+        //konfuguracja tabel
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Subcategory> Subcategories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //konfiguracja bazy danych
         {   
             modelBuilder.Entity<Contact>()
                 .HasIndex(c => c.Email)
@@ -30,6 +32,7 @@ namespace ContactsMicroservice.Data
                 .HasForeignKey(c => c.SubcategoryId)
                 .OnDelete(DeleteBehavior.SetNull);
 
+            //utworzenie danych slownikowych do tabel w bazie danych
             modelBuilder.Entity<Category>().HasData(new List<Category>
                 {
                     new Category { Id = 1, Name = "Business" },
@@ -45,6 +48,7 @@ namespace ContactsMicroservice.Data
                     new Subcategory { Id = 4, Name = "Family", CategoryId = 2 }
                 });
             
+            //przykladowe dane do bazy danych
             modelBuilder.Entity<Contact>().HasData(new List<Contact>
                 {
                     new Contact 

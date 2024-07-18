@@ -1,5 +1,7 @@
 ﻿namespace ContactsMicroservice.Entities
-{
+{   
+
+    //Modele reprezentujace tabele w bazie danych
     public class Contact
         {
             public int Id { get; set; }

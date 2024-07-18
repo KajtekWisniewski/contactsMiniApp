@@ -1,5 +1,6 @@
 ﻿namespace ContactsMicroservice.DTOs
-{
+{   
+    //Dto sluzace do tworzenia nowych obiektow i edycji
     public class UpsertContactDto
     {
         public string FirstName { get; init; } ="";

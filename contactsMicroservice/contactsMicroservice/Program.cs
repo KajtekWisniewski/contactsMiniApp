@@ -16,9 +16,10 @@ namespace ContactsMicroservice
     {
         public async static Task Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
+            
+            //utworzenie buildera aplikacji
 
-            // Add services to the container.
+            var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddControllers();
 
@@ -26,6 +27,7 @@ namespace ContactsMicroservice
 
             builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 
+            //dodanie do aplikacji inicjalnego adresu identityprovidera
             builder.Services.AddKeycloakWebApiAuthentication(builder.Configuration,
                     option =>
                     {
@@ -33,13 +35,17 @@ namespace ContactsMicroservice
                     }
                 );
 
+            //serwisy zwiazanie z autoryzacja keycloak
             builder.Services
                 .AddAuthorization()
                 .AddKeycloakAuthorization(builder.Configuration)
                 .AddAuthorizationBuilder()
                 .AddPolicy("require admin role", policy => policy.RequireResourceRoles(["admin"]));
 
+
             builder.Services.AddCors();
+
+            //dodanie kontekstu bazy danych, polaczenie z postgre za pomoca biblioteki
 
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             {
@@ -50,7 +56,6 @@ namespace ContactsMicroservice
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
 
@@ -60,7 +65,8 @@ namespace ContactsMicroservice
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .WithOrigins("http://localhost:3000"));
-
+            
+            //migracja do bazy danych
             using var scope = app.Services.CreateScope();
 			var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 			if ((await db.Database.GetPendingMigrationsAsync()).Any()) await db.Database.MigrateAsync();
