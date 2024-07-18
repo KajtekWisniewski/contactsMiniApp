@@ -13,7 +13,7 @@ const ContactForm = () => {
     categoryId: 1,
     subcategoryId: null,
     phone: '',
-    dateOfBirth: '',
+    dateOfBirth: ''
   });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -22,7 +22,7 @@ const ContactForm = () => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: value,
+      [name]: value
     }));
   };
 
@@ -32,42 +32,42 @@ const ContactForm = () => {
     setSuccess('');
 
     try {
-        const userSessionResponse = await axios.get('/api/fetch-access-token');
+      const userSessionResponse = await axios.get('/api/fetch-access-token');
 
-        if (userSessionResponse.status === 200 && userSessionResponse.data.accessToken) {
-          const userAccessToken = userSessionResponse.data.accessToken;
+      if (userSessionResponse.status === 200 && userSessionResponse.data.accessToken) {
+        const userAccessToken = userSessionResponse.data.accessToken;
 
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_DEMO_BACKEND_URL}/contacts`,
-        formData,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-             Authorization: 'Bearer ' + userAccessToken
-          },
+        const response = await axios.post(
+          `${process.env.NEXT_PUBLIC_DEMO_BACKEND_URL}/contacts`,
+          formData,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + userAccessToken
+            }
+          }
+        );
+
+        if (response.status === 201) {
+          setSuccess('Contact created successfully!');
+          setFormData({
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            categoryId: 1,
+            subcategoryId: null,
+            phone: '',
+            dateOfBirth: ''
+          });
         }
-      );
-
-      if (response.status === 201) {
-        setSuccess('Contact created successfully!');
-        setFormData({
-          firstName: '',
-          lastName: '',
-          email: '',
-          password: '',
-          categoryId: 1,
-          subcategoryId: null,
-          phone: '',
-          dateOfBirth: '',
-        });
-      }} else {
+      } else {
         setError('Failed to create contact.');
       }
     } catch (err) {
       setError('Error creating contact.');
       console.error(err);
     }
-
   };
 
   return (
@@ -116,6 +116,15 @@ const ContactForm = () => {
             required
           />
         </div>
+        <p>
+          notka: z wybieraniem kategorii jest problem z wybieraniem danych za pomoca
+          dropdownu
+        </p>
+        <p>
+          wiec aby uniknac bledu po stronie backendu najlepiej zostawic kategorie jako
+          business defaultowo
+        </p>
+        <p>nie mialem juz czasu tego naprawic</p>
         <div className={styles.formGroup}>
           <label>Category:</label>
           <select

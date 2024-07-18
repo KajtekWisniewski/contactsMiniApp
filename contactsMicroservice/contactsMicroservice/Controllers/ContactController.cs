@@ -83,7 +83,7 @@ namespace ContactsMicroservice.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public async Task<IActionResult> Update(int id, UpsertContactDto body, IMapper mapper)
+        public async Task<IActionResult> Update(int id, UpsertContactMinDto body, IMapper mapper)
         {
             var roles = User.GetApiClientRoles();
 
